@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -27,6 +28,9 @@ class MainActivity : AppCompatActivity() {
         et_search_users.addTextChangedListener(object: TextWatcher{
             var timer = Timer()
             override fun afterTextChanged(s: Editable?) {
+                if(!s.toString().isEmpty()) {
+                    progress_bar.visibility = View.VISIBLE
+                }
                 timer = Timer()
                 timer.schedule(object : TimerTask(){
                     override fun run() {
@@ -34,7 +38,7 @@ class MainActivity : AppCompatActivity() {
                             listViewModel.getUsersList(s.toString())
                         }
                     }
-                }, 1000)
+                }, 1000) // Delay for network call, there's a limit on how many calls a minute
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -51,6 +55,7 @@ class MainActivity : AppCompatActivity() {
         listAdapter = ListCustomAdapter(this)
         listViewModel.observeUserList.observe(this, Observer {
             listAdapter.setDataSet(it)
+            progress_bar.visibility = View.GONE
         })
         listViewModel.observeError.observe(this, Observer {
             Toast.makeText(this, it, Toast.LENGTH_LONG).show()

@@ -45,6 +45,7 @@ class ListCustomAdapter(var context: Context): RecyclerView.Adapter<ListCustomAd
         Picasso.get().load(data[position].avatar_url).resize(100, 100)
             .centerCrop().into(holder.icon)
 
+        // card listener that brings username to UserDetail Activity to do network call
         holder.card.setOnClickListener {
             val intent = Intent(context, UserDetail::class.java)
             intent.putExtra("username", data[position].login)

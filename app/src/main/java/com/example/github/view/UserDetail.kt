@@ -78,7 +78,7 @@ class UserDetail : AppCompatActivity() {
         tv_followers.text = user.followers.toString()
         tv_following.text = user.following.toString()
         tv_blog.text = user.blog
-        Picasso.get().load(user.avatar_url).resize(250, 250)
+        Picasso.get().load(user.avatar_url).resize(300, 300)
             .centerCrop().into(im_userimage)
     }
 }
