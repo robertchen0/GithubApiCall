@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="4dp"
+    tools:context=".view.MainActivity"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_git"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/github_searcher"
+        android:textAlignment="center">
+    </TextView>
+
+    <EditText
+        android:id="@+id/et_search_users"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Search Users">
+    </EditText>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </androidx.recyclerview.widget.RecyclerView>
+
+</LinearLayout>
